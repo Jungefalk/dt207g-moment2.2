@@ -16,3 +16,9 @@ body{
     max-width: 900px;
     margin: 0 auto;
 }
+
+main{
+    padding: 1em;
+    background-color: #FFF2F2;
+    border-radius: 5px;
+}
