@@ -67,13 +67,21 @@ function readData(data) {
         <p>${data[i].end_date}</p>
         <h3>Arbetsbeskrivnning:</h3>
         <p>${data[i].description}</p>
-        <button id="deleteButton">Ta bort</button>
+        <button>Ta bort</button>
 `;
         workExperienceEl.appendChild(newArticleEl);
-    };
 
-    console.log("Datan har lästs ut till skärmen")
-}
+        //Hämta knapp
+        let deleteButtonEl = newArticleEl.querySelector("button")
+        //Lagra id
+        let workExperienceId = data[i].id
+
+        //Skicka med id vid klick på knapp till deteleData
+        deleteButtonEl.addEventListener("click", function () {
+            deleteData(workExperienceId)
+        })
+    };
+};
 
 //Posta data
 async function postData() {
@@ -110,20 +118,36 @@ async function postData() {
 
         const result = await response.json();
         console.log(result)
-        fetchData();
+        getData();
 
 
     } catch (error) {
         console.error("Det uppstod ett fel: " + error.message);
-    }
-
+    };
 
 }
 
 //Ta bort data
-function deleteData() {
+async function deleteData(id) {
+    try {
+        const response = await fetch(`https://dt207g-moment2-1-bgly.onrender.com/api/work_experience/${id}`, {
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        if (!response.ok) {
+            throw new Error("Fel vid anslutning: " + response.status);
+        }
 
-    console.log("Datan har raderats");
+        const result = await response.json();
+        console.log(result)
 
-    fetchData();
+        //Ladda om sidan
+        location.reload();
+
+    } catch (error) {
+        console.error("Det uppstod ett fel: " + error.message)
+    }
+
 }
