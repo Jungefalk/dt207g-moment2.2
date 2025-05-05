@@ -1,7 +1,7 @@
 
 
 //Hämta id:n
-let tableEl = document.getElementById("work_experience");
+let articleEl = document.getElementById("work_experience");
 let companyNameEl = document.getElementById("company_name");
 let jobTitleEl = document.getElementById("job_title");
 let locationEl = document.getElementById("location");
