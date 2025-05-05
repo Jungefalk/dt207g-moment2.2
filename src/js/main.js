@@ -1,7 +1,7 @@
 
 
 //Hämta id:n
-let articleEl = document.getElementById("work_experience");
+let workExperienceEl = document.getElementById("work_experience");
 let companyNameEl = document.getElementById("company_name");
 let jobTitleEl = document.getElementById("job_title");
 let locationEl = document.getElementById("location");
@@ -45,7 +45,27 @@ async function getData() {
 }
 
 //Läs ut data
-function readData() {
+function readData(data) {
+
+    for (let i = 0; i < data.length; i++) {
+
+        let newArticleEl = document.createElement("article");
+        newArticleEl.innerHTML = `<h3>Arbetsplats:</h3>
+        <p>${data[i].company_name}</p>
+        <h3>Jobb titel:</h3>
+        <p>${data[i].job_title}</p>
+        <h3>Adress:</h3>
+        <p>${data[i].location}</p>
+        <h3>Startdatum:</h3>
+        <p>${data[i].start_date}</p>
+        <h3>Slutdatum:</h3>
+        <p>${data[i].end_date}</p>
+        <h3>Arbetsbeskrivnning:</h3>
+        <p>${data[i].description}</p>
+`;
+        workExperienceEl.appendChild(newArticleEl);
+
+    };
 
     console.log("Datan har lästs ut till skärmen")
 }
