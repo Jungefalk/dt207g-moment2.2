@@ -22,12 +22,26 @@ function init() {
 };
 
 
-//Hämta data
-function getData() {
+//Hämta data och anropa funktion som läser ut till skärmen
+async function getData() {
 
-    console.log("datan har hämtats");
+    try {
+        const response = await fetch(`https://dt207g-moment2-1-bgly.onrender.com/api/work_experience`)
+        if (!response.ok) {
+            throw new Error("Fel vid anslutning: " + response.status);
+        }
 
-    readData();
+        //lagra data i variabel
+        const data = await response.json();
+        console.log("datan har hämtats ", data);
+
+        //Anropa funktion
+        readData(data);
+
+    } catch (error) {
+        console.error("Ett fel uppstod " + error.message);
+    }
+
 }
 
 //Läs ut data
