@@ -54,7 +54,7 @@ function readData(data) {
         let newArticleEl = document.createElement("article");
         newArticleEl.innerHTML = `<h3>Arbetsplats:</h3>
         <p>${data[i].company_name}</p>
-        <h3>Jobb titel:</h3>
+        <h3>Jobbtitel:</h3>
         <p>${data[i].job_title}</p>
         <h3>Adress:</h3>
         <p>${data[i].location}</p>
@@ -64,6 +64,7 @@ function readData(data) {
         <p>${data[i].end_date}</p>
         <h3>Arbetsbeskrivnning:</h3>
         <p>${data[i].description}</p>
+        <button id="deleteButton">Ta bort</button>
 `;
         workExperienceEl.appendChild(newArticleEl);
 
