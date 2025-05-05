@@ -47,8 +47,10 @@ async function getData() {
 //Läs ut data
 function readData(data) {
 
+    //loopa datan
     for (let i = 0; i < data.length; i++) {
 
+        //Skapa nytt article elelemnt och läs ut i innerHTML
         let newArticleEl = document.createElement("article");
         newArticleEl.innerHTML = `<h3>Arbetsplats:</h3>
         <p>${data[i].company_name}</p>
