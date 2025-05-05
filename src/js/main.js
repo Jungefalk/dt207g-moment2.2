@@ -8,11 +8,14 @@ let locationEl = document.getElementById("location");
 let startDateEl = document.getElementById("start_date")
 let endDateEl = document.getElementById("end_date");
 let descriptionEl = document.getElementById("description");
-let buttonEl = document.getElementById("button");
+let buttonEl = document.getElementById("submitButton");
 
 //Händelselyssnare
 window.addEventListener("load", init);
-buttonEl.addEventListener("click", postData)
+buttonEl.addEventListener("click", function (event) {
+    event.preventDefault();
+    postData();
+});
 
 //Init
 function init() {
@@ -67,18 +70,54 @@ function readData(data) {
         <button id="deleteButton">Ta bort</button>
 `;
         workExperienceEl.appendChild(newArticleEl);
-
     };
 
     console.log("Datan har lästs ut till skärmen")
 }
 
 //Posta data
-function postData() {
+async function postData() {
 
-    console.log("Datan har postats");
+    //Lagra värden från inputfält
+    let newExpreience = {
+        company_name: companyNameEl.value,
+        job_title: jobTitleEl.value,
+        location: locationEl.value,
+        start_date: startDateEl.value,
+        end_date: endDateEl.value,
+        description: descriptionEl.value
+    };
 
-    fetchData();
+    //Töm inputfält
+    companyNameEl.value = "";
+    jobTitleEl.value = "";
+    locationEl.value = "";
+    startDateEl.value = "";
+    endDateEl.value = "";
+    descriptionEl.value = "";
+
+    try {
+        const response = await fetch(`https://dt207g-moment2-1-bgly.onrender.com/api/work_experience/`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newExpreience)
+        });
+        if (!response.ok) {
+            throw new Error("Fel vid anslutning: " + response.status);
+        }
+
+        const result = await response.json();
+        console.log(result)
+        fetchData();
+
+
+    } catch (error) {
+        console.error("Det uppstod ett fel: " + error.message);
+    }
+
+
 }
 
 //Ta bort data
