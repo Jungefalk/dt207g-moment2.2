@@ -21,7 +21,6 @@ buttonEl.addEventListener("click", function (event) {
 function init() {
 
     getData();
-    console.log("Sidan har laddat in");
 };
 
 
@@ -36,7 +35,6 @@ async function getData() {
 
         //lagra data i variabel
         const data = await response.json();
-        console.log("datan har hämtats ", data);
 
         //Anropa funktion
         readData(data);
@@ -104,6 +102,7 @@ async function postData() {
     endDateEl.value = "";
     descriptionEl.value = "";
 
+    //Postanrop
     try {
         const response = await fetch(`https://dt207g-moment2-1-bgly.onrender.com/api/work_experience/`, {
             method: 'POST',
@@ -117,7 +116,6 @@ async function postData() {
         }
 
         const result = await response.json();
-        console.log(result)
         getData();
 
 
@@ -127,7 +125,7 @@ async function postData() {
 
 }
 
-//Ta bort data
+//Ta bort data med DELETE anrop
 async function deleteData(id) {
     try {
         const response = await fetch(`https://dt207g-moment2-1-bgly.onrender.com/api/work_experience/${id}`, {
@@ -141,8 +139,7 @@ async function deleteData(id) {
         }
 
         const result = await response.json();
-        console.log(result)
-
+        
         //Ladda om sidan
         location.reload();
 
