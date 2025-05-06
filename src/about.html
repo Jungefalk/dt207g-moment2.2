@@ -26,6 +26,43 @@
         <!-- Main content -->
         <main>
             <h2>Om sidan</h2>
+            <article class="about">
+                <p>Syftet med webbplatsen är att fungera som ett CV.
+
+                    Frontend applikationen är byggd med npm och parcel och gör anrop till ett api som använder SQLite3
+                    som databas.</p>
+
+                <h3>Funktioner:</h3>
+                <ul>
+                    <li> När webbplatsen startar igång görs ett GET-anrop till api:et för att hämta in och skriva ut de
+                        redan
+                        befintliga
+                        posterna i databasen till skärmen.</li>
+                    <li>Det går att lägga till poster i databasen. För att göra det fylls formuläret på sidan ut och
+                        när
+                        användaren klickar på "Lägg till" görs då ett POST-anrop som lägger till den nya posten i
+                        databasen.
+                        Ett nytt
+                        GET-anrop görs i samband med detta för att få ut den nya posten till skärmen.</li>
+                    <li>Posterna går också att ta bort. När användaren trycker på ta bort så skickas postens id med till
+                        DELETE - anropet som tar bort posten med det aktuella id:t.</li>
+                </ul>
+            </article>
+            <h2>Slutsatser</h2>
+            <article class="about">
+                <p>Under arbetet med denna labb insåg jag hur användbart det är att kunna skapa sitt eget API. Det ger
+                    en stor frihet i att kunna göra i princip vilken typ av applikation som helst, utifrån
+                    egna tankar och ideér. Jag har lärt mig att göra olika typer av anrop för att kunna uppdatera
+                    API:et, i detta fall med POST för att lägga till och DELETE för att ta bort poster. Det visade sig
+                    också att om man gjort ett bra arbete med API:et, exempelvis genom att göra felkontroller, så är
+                    det inte
+                    mycket svårare än att göra ett
+                    vanligt GET-anrop. Jag började med att göra databasen med MySQL, men valde sedan att göra om till
+                    SQLite i denna labb då den var enklare att publicera och jag tyckte att det kändes roligare att
+                    arbeta med ett API som inte låg helt lokalt, på det viset blev lite igenkänning från tidigare
+                    frontend-kurs.</p>
+            </article>
+
         </main>
 
         <!-- Footer -->

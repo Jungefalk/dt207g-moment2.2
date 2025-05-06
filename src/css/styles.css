@@ -119,3 +119,7 @@ article p{
 article h3{
     margin-bottom: -0.7em;
 }
+
+.about p{
+    line-height: 1.5em;
+}
