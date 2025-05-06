@@ -123,3 +123,9 @@ article h3{
 .about p{
     line-height: 1.5em;
 }
+
+#errorMessage p{
+    color: red;
+    margin-left: 1.8em;
+    font-weight: 600;
+}

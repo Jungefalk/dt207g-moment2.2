@@ -9,6 +9,7 @@ let startDateEl = document.getElementById("start_date")
 let endDateEl = document.getElementById("end_date");
 let descriptionEl = document.getElementById("description");
 let buttonEl = document.getElementById("submitButton");
+let errorMessageEl = document.getElementById("errorMessage");
 
 //Händelselyssnare
 window.addEventListener("load", init);
@@ -94,6 +95,9 @@ async function postData() {
         description: descriptionEl.value
     };
 
+    //Töm felmeddelande
+    errorMessageEl.innerHTML = "";
+
     //Töm inputfält
     companyNameEl.value = "";
     jobTitleEl.value = "";
@@ -101,6 +105,17 @@ async function postData() {
     startDateEl.value = "";
     endDateEl.value = "";
     descriptionEl.value = "";
+
+    //kontrollera att inputfälten inte är tomma
+
+    if (companyNameEl.value === "" && jobTitleEl.value === "" && locationEl.value === "" && startDateEl.value === "" && endDateEl.value === "" && descriptionEl.value === "") {
+        let errorMessage = document.createElement("p");
+        let errorText = document.createTextNode("Du behöver fylla i samtliga fält");
+        errorMessage.appendChild(errorText);
+        errorMessageEl.appendChild(errorMessage);
+       
+    };
+
 
     //Postanrop
     try {
@@ -119,11 +134,12 @@ async function postData() {
         getData();
 
 
+
     } catch (error) {
         console.error("Det uppstod ett fel: " + error.message);
     };
 
-}
+};
 
 //Ta bort data med DELETE anrop
 async function deleteData(id) {
@@ -139,7 +155,7 @@ async function deleteData(id) {
         }
 
         const result = await response.json();
-        
+
         //Ladda om sidan
         location.reload();
 
