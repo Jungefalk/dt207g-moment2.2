@@ -85,6 +85,19 @@ function readData(data) {
 //Posta data
 async function postData() {
 
+    //Töm felmeddelande
+    errorMessageEl.innerHTML = "";
+
+    //kontrollera att inputfälten inte är tomma
+
+    if (companyNameEl.value === "" && jobTitleEl.value === "" && locationEl.value === "" && startDateEl.value === "" && endDateEl.value === "" && descriptionEl.value === "") {
+        let errorMessage = document.createElement("p");
+        let errorText = document.createTextNode("Du behöver fylla i samtliga fält");
+        errorMessage.appendChild(errorText);
+        errorMessageEl.appendChild(errorMessage);
+
+    };
+
     //Lagra värden från inputfält
     let newExpreience = {
         company_name: companyNameEl.value,
@@ -94,28 +107,6 @@ async function postData() {
         end_date: endDateEl.value,
         description: descriptionEl.value
     };
-
-    //Töm felmeddelande
-    errorMessageEl.innerHTML = "";
-
-    //Töm inputfält
-    companyNameEl.value = "";
-    jobTitleEl.value = "";
-    locationEl.value = "";
-    startDateEl.value = "";
-    endDateEl.value = "";
-    descriptionEl.value = "";
-
-    //kontrollera att inputfälten inte är tomma
-
-    if (companyNameEl.value === "" && jobTitleEl.value === "" && locationEl.value === "" && startDateEl.value === "" && endDateEl.value === "" && descriptionEl.value === "") {
-        let errorMessage = document.createElement("p");
-        let errorText = document.createTextNode("Du behöver fylla i samtliga fält");
-        errorMessage.appendChild(errorText);
-        errorMessageEl.appendChild(errorMessage);
-       
-    };
-
 
     //Postanrop
     try {
@@ -131,8 +122,16 @@ async function postData() {
         }
 
         const result = await response.json();
-        getData();
 
+        //Töm inputfält
+        companyNameEl.value = "";
+        jobTitleEl.value = "";
+        locationEl.value = "";
+        startDateEl.value = "";
+        endDateEl.value = "";
+        descriptionEl.value = "";
+
+        getData();
 
 
     } catch (error) {
